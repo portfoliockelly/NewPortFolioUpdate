@@ -1,0 +1,186 @@
+﻿@model IEnumerable<NewPortfolioUpdate.Models.WelcomeModel>
+
+@using NewPortfolioUpdate.Models
+@using NewPortfolioUpdate.Services
+@using NewPortfolioUpdate.Controllers
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
+<p>
+    <!-- <a asp-action="Create">Create New</a>-->
+</p>
+<section class="intro" id="welcome">
+    <div class="topContainer" id="topContainer" style="top:10%">
+        <div class="introBox">
+            <h1><hr>Developer<hr></h1>
+            <h6 class="float-left lefty">Hi, My name is Craig. Thank you for being here and having a look at my website.</h6>
+            <h6 class="float-right righty">I am looking for commercial experience in both front-end and back-end Web Development.</h6>
+        </div>
+        <h1></h1>
+    </div>
+</section>
+<section class="sandwichmeat" id="meat">
+    <div class=" d-flex flex-wrap containers">
+        @foreach (var item in Model)
+        {
+            if (item.islogo == null)
+            {
+            <div class="card cardAttrabute" style="width: 33.333333%;" data-toggle="modal" data-target="#@item.id">
+                <img src=@item.CardImage class="card-img-top" alt="@item.Title">
+                <div class="card-img-overlay">
+                    <h2> <span class="cbadge bg-dark text-light badgesize">@Html.DisplayFor(modelItem => item.Title)</span></h2>
+
+
+                    <p class="card-text"></p>
+                </div>
+
+
+            </div>
+            }
+            <div id="@item.id" class="modal fade " data-backdrop="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <p><h2>@Html.DisplayFor(modelItem => item.Title)</h2></p>
+                            <div class="modal-title text-md"></div> <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="p-4 text-center">
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.LineOne)</p>
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.LineTwo)</p>
+
+                                @if (item.Image != null)
+                                {
+                                    <img src=@item.Image class="card-img" alt="@item.Title" modal-content>
+                                }
+                                @if (item.Video != null)
+                                {
+                                    <video width="400" controls>
+                                        <source src="@item.Video" class="align-content-around" type="video/mp4">
+                                    </video>
+                                }
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.LineThree)</p>
+                                @if (item.button != null)
+                                {
+                                    <a href="/InfoDisplay/Shop" type="button" class="btn btn-light" >Browse Shop</a>
+                                    
+                                }
+                                @if (item.Game != null)
+                                {
+
+                                    <p style="width:400px">
+
+
+
+                                        <link rel="shortcut icon" href=~/TemplateData/favicon.ico>
+                                        <link rel="stylesheet" href=~/TemplateData/style.css>
+                                        <script src=~/TemplateData/UnityProgress.js></script>
+                                        <script src=~/Build/UnityLoader.js></script>
+
+                                        <script>
+                                            var gameInstance = UnityLoader.instantiate("gameContainer", "Build/ScriptOnlyForWeb.json", { onProgress: UnityProgress });
+                                        </script>
+
+
+                                        <div class="webgl-content" style="top:130%">
+                                            <div id="gameContainer" style="width: 450px; height: 320px"></div>
+                                            <div class="footer">
+                                                <div class="webgl-logo"></div>
+                                                <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+                                                <div class="title">CraigsUtilityAI3.0</div>
+                                            </div>
+                                        </div>
+
+                                    </p>
+
+                                }
+
+                            </div>
+                        </div>
+                        <div class="modal-footer"> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button> </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }
+    </div>
+    <section class="intro" id="welcome">
+        <div class="topContainer" id="topContainer" style="top:10%">
+            <div class="introBox">
+                <h1><hr>Thank You<hr></h1>
+                <p class="float-left lefty">This WebSite was made using the following programming methods.</p>
+                <p class="float-right righty">HTML, CSS, BootStrap, APS.Net(Mvc), Sql, and C-Sharp.</p>
+            </div>
+            <h1></h1>
+        </div>
+    </section>
+    <div class=" d-flex flex-wrap logoContainers">
+        @foreach (var logo in Model)
+        {
+            if(logo.islogo != null) { 
+            <div class="card logoAttrabute" data-toggle="modal" data-target="#@logo.idTwo">
+                <img src=@logo.logo class="card-img-logo" alt="@logo.idTwo">
+            
+
+              
+            </div> 
+            }
+        }
+        </div>
+        <!--@foreach (var item in Model)
+        {
+
+        <div class="row cardrow">
+
+            <div class="col-sm-4 containers">
+                <a class="display-1 WelcomeCardDisplay" data-toggle="modal" data-target="#about" )>
+                    <div class="card bg-light text-light">
+                        <img src=~/media/hello.jpg class="card-img" alt="About me">
+                        <div class="card-img-overlay">
+                            <h2> <span class="cbadge bg-dark badgesize">@Html.DisplayNameFor(model => model.About)</span></h2>
+                            <img src=item.Image class="card-img" alt="Development">
+
+                            <p class="card-text"> <img src="/media/development.jpg "></p>
+
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+            <div id="about" class="modal fade " data-backdrop="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <p><h2>@Html.DisplayNameFor(modelItem => item.About)</h2></p>
+                            <div class="modal-title text-md"></div> <button class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="p-4 text-center">
+                                <p class="card-text">@Html.DisplayFor(modelItem => item.About)</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer"> <button type="button" class="btn btn-light" data-dismiss="modal">Close</button> </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+        }-->
+</section>
+
+<a href="#" type="button" class="btn btn-light">Top</a>

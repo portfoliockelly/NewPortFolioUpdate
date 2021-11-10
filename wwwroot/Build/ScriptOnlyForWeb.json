@@ -1,0 +1,16 @@
+{
+"companyName": "DefaultCompany",
+"productName": "CraigsUtilityAI3.0",
+"dataUrl": "ScriptOnlyForWeb.data.unityweb",
+"wasmCodeUrl": "ScriptOnlyForWeb.wasm.code.unityweb",
+"wasmFrameworkUrl": "ScriptOnlyForWeb.wasm.framework.unityweb",
+"asmCodeUrl": "ScriptOnlyForWeb.asm.code.unityweb",
+"asmMemoryUrl": "ScriptOnlyForWeb.asm.memory.unityweb",
+"asmFrameworkUrl": "ScriptOnlyForWeb.asm.framework.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"}
+}

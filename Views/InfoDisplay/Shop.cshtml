@@ -1,0 +1,93 @@
+﻿@model IEnumerable<NewPortfolioUpdate.Models.shopModel>
+    <section class="intro" id="welcome">
+        <div class="topContainer" id="topContainer" style="top:10%">
+            <div class="introBox">
+                <h1><hr>Shopping Product Example<hr></h1>
+                <p class="float-left lefty">Bellow you can edit delete and create new items for the data base.</p>
+                <p class="float-right righty">The images are generated place holders from <a href="https://loremflickr.com">loremflickr.com</a>.</p>
+            </div>
+            <h1></h1>
+        </div>
+    </section>
+    <p>
+
+        <a href="/InfoDisplay/InputForm" class="btn btn-primary">Create New Product</a>
+    </p>
+    <div class="container d-flex flex-wrap">
+        @foreach (var item in Model)
+        {
+            var s = item.Name;
+            var firstWord = s.IndexOf(" ") > -1 ? s.Substring(0, s.IndexOf(" ")) : s;
+            <div class="card" style="width: 25%; height:32%; background-color: gray">
+                <img src="https://loremflickr.com/150/150/@firstWord?lock=@item.Id" class="card-img-top" alt="@item.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+
+                    <p class="card-text">@Html.DisplayFor(mbox => item.Price)</p>
+                    <p class="card-text">@item.Description</p>
+                    <a href="/InfoDisplay/ShowDetails/@item.Id" class="btn btn-primary">Show Details</a>
+                    <a href="/InfoDisplay/Edit/@item.Id" class="btn btn-warning">Edit</a>
+                    <a href="/InfoDisplay/Delete/@item.Id" class="btn btn-danger">Delete</a>
+                </div>
+
+            </div>
+        }
+    </div>
+    <section class="intro" id="welcome">
+        <div class="topContainer" id="topContainer" style="top:10%">
+            <div class="introBox">
+                <h1><hr>Table View Of the Same List<hr></h1>
+      
+            </div>
+            <h1></h1>
+        </div>
+    </section>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+
+
+                        <!----------------------->
+                        <!----------------------->
+
+                        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <a href="#" type="button" class="btn btn-light">Top</a>
